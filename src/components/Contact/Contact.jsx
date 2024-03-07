@@ -1,18 +1,24 @@
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+
 import css from './Contact.module.css';
 
-const Contact = () => {
+const Contact = ({ data: { id, name, number }, onDelete }) => {
 	return (
 		<>
-			<ul className={clsx(css.feedback)}></ul>
+			<div className={css.container}>
+				<p className={css.name}>{name}</p>
+				<p className={css.number}>{number}</p>
+				<button className={css.btn} onClick={() => onDelete(id)}>
+					Delete
+				</button>
+			</div>
 		</>
 	);
 };
 
 export default Contact;
 
-Feedback.propTypes = {
-	count: PropTypes.object,
-	totalFeedback: PropTypes.number,
+Contact.propTypes = {
+	data: PropTypes.object,
+	onDelete: PropTypes.func,
 };
